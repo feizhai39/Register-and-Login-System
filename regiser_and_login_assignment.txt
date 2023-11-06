@@ -1,0 +1,25 @@
+::Admin screen::
+1.Create user
+2.Approve user update
+
+
+
+
+Admin can create user details with name, email, mobile, profile pic.
+
+User search for admin
+	admin can search the users by name or email mobile 
+
+	after searching user list should populate with picture and name, email
+
+
+
+::User Screen::
+
+When user is logged for first time,they can set password.
+User can login with their email and password 
+Once login successful they can update their password, name,mobile,email
+
+
+Whenever the user is updated their email ,it should show in admin screen for confirmation
+Above update can happen only when admin is approved.
