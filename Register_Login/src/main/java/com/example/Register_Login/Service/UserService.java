@@ -26,11 +26,17 @@ public class UserService {
         userRepo.save(userModel);//will insert the data in the table
     }
 
+    public Boolean login(String email,String password) throws Exception{
+        UserModel userModel = userRepo.login(email,password).orElseThrow(()->new Exception("No User Found"));
+        return true;
+    }
+
     public void userUpdate(UserRequest userRequest) throws Exception{
         UserModel userModel = userRepo.findById(userRequest.getId()).orElseThrow(()->new Exception("No user found"));
         if(Objects.nonNull(userRequest.getName())){
             userModel.setName(userRequest.getName());
-        } else if(Objects.nonNull(userRequest.getEmail())){
+        }
+        if(Objects.nonNull(userRequest.getEmail())){
             userModel.setName(userRequest.getEmail());
         }
         userRepo.save(userModel);//will update the data in the table
@@ -44,6 +50,15 @@ public class UserService {
             userModel.setName(userRequest.getEmail());
         }
         userRepo.delete(userModel);//will delete the userRow in the table
+    }
+
+    public void deleteUser(Long userId)throws Exception{
+        try{
+            UserModel userModel = userRepo.findById(userId).orElseThrow(()->new Exception("No User Found"));
+            userRepo.delete(userModel);
+        }catch (Exception e){
+            throw e;
+        }
     }
 }
 
